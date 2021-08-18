@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Student Management System</title>
+	<!--Bootstrap-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	 
+	 <!--fonts-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+	
+<style>
+	  
+		.required-field::before {
+			  content: "*";
+			  color: red;
+			}
+			
+		body {
+		background-color: #93FB53;
+		font-family: 'Acme', sans-serif;
+			}
+		.form-control:active,
+		.form-control:focus,
+		.form-control:focus:active {
+		  background-color: #B1F885!important;
+		  border-color: #B1F885;
+		  
+			}
+		input invalid{
+		border:1px solid red;
+		}
+		.error-hint{
+		color:red;
+		}
+		  
+		  .has-error label,
+        .has-error input,
+        .has-error textarea {
+            color: red;
+            border-color: red;
+        }
+</style>
+
+</head>
+<body>
+<div class="col-sm-10 col-sm-offset-1">
+<h1 class="card-header text-center">Student Details</h1>
+<br>
+    <form role="form" data-toggle="validator">
+	<div class="form-group row">
+            <label for="name" class="control-label col-sm-3" data-error="You must have a name." > Name: <span class="required-field"></span></label>
+				<div class="col-sm-8" >
+					<input type="text" class="form-control" id="nametxt" placeholder="Enter your name" required >
+				<div class="error-hint">your name is required </div>
+				<!-- Error -->
+                        <div class="help-block with-errors"></div>
+				</div>
+				
+	</div>
+       
+   
+    <div class="form-group row">
+            <label for="gender" class="control-label col-sm-3">Gender:<span class="required-field"></span></label>
+				<div class="col-sm-8">
+					<input type="radio" id="female" name="gender" value="Female" checked>
+					<label for="female" onclick="getRadioValue(this)">Female</label>
+					<input type="radio" id="male" name="gender" value="Male">
+					<label for="male" onclick="getRadioValue(this)">Male</label>
+				</div>
+	</div>
+		
+		
+    <div class="form-group row">
+            <label for="dob" class="control-label col-sm-3" >Date Of Birth:<span class="required-field"></span></label>
+				<div class="col-sm-8">
+					<input type="date" class="form-control" name="dob" id="dob" required >
+				</div>
+	</div>
+		
+		
+	<div class="form-group row">
+            <label for="class" class="control-label col-sm-3">Class:<span class="required-field"></span></label>
+				<div class="col-sm-8">
+					<input type="text" class="form-control" id="classtxt" placeholder="Class" required />
+				</div>
+    </div>
+		
+    <div class="form-group row">
+            <label for="section" class="control-label col-sm-3">Section:<span class="required-field"></span></label>
+				<div class="col-sm-8">
+					<input type="radio" id="A" name="sec" value="A" checked>
+					<label for="A"  onclick="RadioValue(this)">A</label>
+					
+					<input type="radio" id="B" name="sec" value="B">
+					<label for="B" onclick="RadioValue(this)">B</label>
+					
+					<input type="radio" id="c" name="sec" value="C">
+					<label for="D"  onclick="RadioValue(this)">C</label>
+					
+					<input type="radio" id="D" name="sec" value="D">
+					<label for="E" onclick="RadioValue(this)">D</label>
+					
+					
+				</div>
+	</div>
+		
+	<div class="form-group row">
+            <label for="rollno" class="control-label col-sm-3">Roll No:<span class="required-field"></span></label>
+			 <div class="col-sm-8">
+				<input type="text" class="form-control" id="rNo" placeholder="Roll No" required >
+			</div>
+	</div>
+		
+        <!--<div>
+            <label class="label-name">Phone No:</label>
+            <input type="number" name="phone_no" required>
+        </div>-->
+     <div class="form-group row">
+            <label for="sub1" class="control-label col-sm-3">subject1:<span class="required-field"></span></label>
+				<div class="col-sm-8">
+					<input type="number" class="form-control" id="sub1" placeholder="Subject-1" required >
+				</div>
+	</div>
+	
+	<div class="form-group row" >
+            <label for="sub2" class="control-label col-sm-3">subject2:<span class="required-field"></span></label>
+				<div class="col-sm-8">
+					<input type="number" class="form-control" id="sub2" placeholder="Subject-2" required >
+				</div>
+	</div>
+		
+	<div class="form-group row">
+            <label for="prac1" class="control-label col-sm-3">Practicals1:<span class="required-field"></span></label>
+				<div class="col-sm-8">
+					<input type="number"class="form-control" id="prac1" placeholder="Practical-1" required >
+				</div>
+	</div>
+		
+	<div class="form-group row">
+            <label for="prac2" class="control-label col-sm-3">Practicals2:<span class="required-field"></span></label>
+				<div class="col-sm-8">
+					<input type="number" id="prac2" class="form-control" placeholder="Practical-2" required >
+				</div/>
+	</div>
+		
+        
+    <div class="form-group row">
+            <label for="msg" class="control-label col-sm-3 ">Remarks:<span class="required-field"></span></label>
+				<div class="col-sm-8">
+					<textarea id="msgtxt"class="form-control" data-error="Please enter message."placeholder="Add your message"></textarea>
+				</div>
+	</div>
+
+    <div class="button">
+            <input type="button" class="btn btn-primary" id="button" value="submit" onclick="savedata()">
+    </div>	
+    </form>
+
+	</br>
+	
+<div class="row no-gutters ">
+	<h3><center> Updated Details </center></h3><br>
+	<div class="row no-gutters col-sm-12">
+			<table id="form_result" class="table table-bordered">				
+			<thead>
+                <tr id ="rowId">
+                    <th >Name</th>
+                    <th >Gender</th>
+                    <th >DOB</th>
+                    <th >Class</th>
+                    <th >Section</th>
+					<th >Roll No</th>
+                    <th >Sub-1</th>
+                    <th >Sub-2</th>
+					<th >Practical-1</th>
+					<th >Practical-2</th>
+					<th > Theory Total </th>
+					<th > Practicals Total </th>
+					<th > Average </th>
+                    <th >Remarks</th>
+                </tr>
+			</thead>
+            </table>
+  </div>
+	
+
+	
+<script>
+
+    var checkedValue = [];
+    var row;
+    var data;
+	
+	
+//for gender 	
+    function getRadioValue(gender) {
+        var elements = document.getElementsByName(gender);
+        for (var i = 0, l = elements.length; i < l; i++) {
+            if (elements[i].checked) {
+                return elements[i].value;
+				
+            }
+        }
+    }
+	
+// for section
+	function RadioValue(sec) {
+        var elements = document.getElementsByName(sec);
+        for (var i = 0, l = elements.length; i < l; i++) {
+            if (elements[i].checked) {
+                return elements[i].value;
+				
+            }
+        }
+    }
+	
+	
+//for adding two subjects  
+	function addSub(){	
+			var sub1 =parseFloat(document.getElementById("sub1").value);
+			var sub2 =parseFloat(document.getElementById("sub2").value);
+			var add= sub1+ sub2;
+			//alert("Theory Total is:" +add);	
+			console.log("Theory Total is: " +add);
+			
+			return add;
+			}
+
+			
+//for adding two practicals		
+	function addPrac(){
+			var prac1 =parseInt(document.getElementById("prac1").value);
+			var prac2 =parseInt(document.getElementById("prac2").value);
+			var addT= prac1+ prac2;
+			//alert("Practicals Total is:" +addT);
+			console.log("Practicals Total is:" +addT);
+			
+			return addT;
+			
+			}
+			
+			
+//for average			
+	function addTot(){
+			var sub1 =parseInt(document.getElementById("sub1").value);
+			var sub2 =parseInt(document.getElementById("sub2").value);
+			var add= sub1+ sub2;
+		
+			
+			var prac1 =parseInt(document.getElementById("prac1").value);
+			var prac2 =parseInt(document.getElementById("prac2").value);
+			var addT= prac1+ prac2;
+			
+			var gd= add+ addT/2;
+			//alert("Average Total is:" +gd);
+			console.log("Average Total is:" +gd);
+			
+			return gd;
+			
+			}
+	
+	
+    function savedata() {
+
+            var name= document.getElementById('nametxt').value;
+				if (name == "") 
+				{
+				alert("Name field value missing");
+				return false;
+				}
+           var gender= getRadioValue('gender');
+			   
+           var dob=document.getElementById('dob').value;
+				 if (dob == "") 
+				{
+				alert("please Enter DOB");
+				return false;
+				}
+            var classtxt= document.getElementById('classtxt').value;
+				if (classtxt == "") 
+					{
+					alert("class field value missing");
+					return false;
+					}
+            var sec= RadioValue("sec");
+				if (sec == "") 
+					{
+					alert("Choose the Section");
+					return false;
+					}
+			var rNo= document.getElementById('rNo').value;
+				if (rNo == "") 
+						{
+						alert("Enter the Roll Number");
+						return false;
+						}
+            var sub1= document.getElementById('sub1').value;
+				if (sub1 == "") 
+							{
+							alert("Please Enter Subject1 Mark");
+							return false;
+							}
+			var sub2= document.getElementById('sub2').value;
+								if (sub2 == "") 
+							{
+							alert("Please Enter Subject2 Mark");
+							return false;
+							}
+
+            var prac1= document.getElementById('prac1').value;
+								if (prac1 == "") 
+							{
+							alert("Please Enter Practical-1 Mark");
+							return false;
+							}
+
+			var prac2= document.getElementById('prac2').value;
+							if (prac2 == "") 
+							{
+							alert("Please Enter practical-2 Mark");
+							return false;
+							}
+
+			var subAdd=addSub("subAdd");
+			var pracAdd=addPrac("pracAdd");
+			var addtot= addTot("addtot");
+			var remarks= document.getElementById('msgtxt').value;
+			
+           table = document.getElementById('form_result'); 
+		 
+         //Add the rows.
+            row = table.insertRow(-1);  
+					
+            var cell1 = row.insertCell(-1);
+            var cell2 = row.insertCell(-1);
+            var cell3 = row.insertCell(-1);
+            var cell4 = row.insertCell(-1);
+            var cell5 = row.insertCell(-1);
+            var cell6 = row.insertCell(-1);
+            var cell7 = row.insertCell(-1);
+            var cell8 = row.insertCell(-1);
+			var cell9 = row.insertCell(-1);
+			var cell10 = row.insertCell(-1);
+			var cell11 = row.insertCell(-1);
+			var cell12 = row.insertCell(-1);
+			var cell13 = row.insertCell(-1);
+			var cell14 = row.insertCell(-1);
+			
+			
+		
+
+            cell1.innerHTML = name;
+            cell2.innerHTML = gender;
+            cell3.innerHTML = dob;
+            cell4.innerHTML = classtxt;
+            cell5.innerHTML = sec;
+			cell6.innerHTML = rNo;
+            cell7.innerHTML = sub1;
+            cell8.innerHTML = sub2;
+			cell9.innerHTML = prac1;
+            cell10.innerHTML = prac2;
+			cell11.innerHTML = subAdd;
+			cell12.innerHTML = pracAdd;
+			cell13.innerHTML = addtot;
+			cell14.innerHTML = remarks;
+			
+			//adding rows
+			 table.appendChild(row);
+			 
+   //}
+	
+}
+</script>   
+</body>
+</html>
+
